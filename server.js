@@ -3,6 +3,8 @@ const axios = require('axios');
 
 // Imports End
 
+const URL = 'https://testapi.donatekart.com/api/campaign';
+const totalAmountString = 'totalAmount';
 //Express Application
 const app = express();
 
@@ -31,11 +33,11 @@ function dateDifference(date1,date2){
 //API to return all the campaigns sorted in descending order of total Amount
 app.get('/descendingCampaigns',function(request,response){
 
-    axios.get('https://testapi.donatekart.com/api/campaign')
+    axios.get(URL)
     .then(res => {
         // console.log(res.data);
         let campaignArray = res.data;
-        campaignArray.sort(comparator("totalAmount"));
+        campaignArray.sort(comparator(totalAmountString));
         // console.log(campaignArray);
         var responseArray = [];
         var responseData = {};
@@ -57,7 +59,7 @@ app.get('/descendingCampaigns',function(request,response){
 // API to get the active campaigns and the campaigns that were started before 30 days
 app.get('/activeCampaigns',function(request,response){
 
-    axios.get('https://testapi.donatekart.com/api/campaign')
+    axios.get(URL)
     .then(res => {
         let campaignArray = res.data;
         var responseArray = [];
@@ -83,7 +85,7 @@ app.get('/activeCampaigns',function(request,response){
 // API to get the closed campaigns 
 app.get('/closedCampaigns',function(request,response){
 
-    axios.get('https://testapi.donatekart.com/api/campaign')
+    axios.get(URL)
     .then(res => {
         let campaignArray = res.data;
         var responseArray = [];
