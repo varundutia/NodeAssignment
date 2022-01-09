@@ -2,7 +2,7 @@
 function comparator(field){
 
     return function(data1,data2){
-        if(data1[field]>data2[field]){
+        if(data1[field] > data2[field]){
             return -1;
         }
         return 1;
